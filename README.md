@@ -7,6 +7,9 @@ I've included a pipenv Pipefile, to help manage the environment. To install:
 
 Then type `pipenv shell` to fire up the virtual environment.
 
+### Currently Installed Packages
+
+
 
 ### Data Sources
 [Kaggle Cannabis Strains](https://www.kaggle.com/kingburrito666/cannabis-strains?select=cannabis.csv)
