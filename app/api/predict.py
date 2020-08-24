@@ -28,21 +28,20 @@ class DesiredAffects(BaseModel):
 
 
 @router.post('/predict')
-async def predict(item: Item):
+async def predict(item: DesiredAffects):
     """
     Drop down menus for the Following:
 
-    1- Desired Affects: Decreasing Depression
-    2- Body affects:
-    3- Mood alteration:
-    4- Appetite stimulation
-    5-
+    1- Bodily Affects: Tingly, Energetic, Relaxed
+    2- Mind affects: Happy, Euphoric,
+    3- Mood alteration: Uplifted, Giggly, Focused
+    4- Taste: Earthy, Woody, Pine, Grape, Sweet, Pungent
+    5- THC:CBD Ratio: 1:1, 1:10, 1:20, 3:1, 5:1, 10:1
     """
 
-    X_new = item.to_df()
-    log.info(X_new)
-    y_pred = random.choice([True, False])
-    y_pred_proba = random.random() / 2 + 0.5
+    x_df = item.to_df()
+    y_pred = 'OG Kush'  # ML model would output the most desirable strain here
+    y_pred_proba = 'OG Kush matches your desired affect to 98% accuracy'  # here we would describe how closely it fits
     return {
         'prediction': y_pred,
         'probability': y_pred_proba
