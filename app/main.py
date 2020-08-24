@@ -5,8 +5,8 @@ import uvicorn
 from app.api import predict, viz
 
 app = FastAPI(
-    title='DS API',
-    description='Lorem ipsum',
+    title='Medical Cannabis recommendation Engine',
+    description='Taking a variety of inputs to predict the best strain of Cannabis for medial users',
     version='0.1',
     docs_url='/',
 )
