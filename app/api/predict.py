@@ -9,12 +9,12 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-class Item(BaseModel):
+class DesiredAffects(BaseModel):
     """Use this data model to parse the request body JSON."""
 
-    x1: float = Field(..., example=3.14)
-    x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')
+    Desired_Affect1: str = Field(..., example='Mood Alteration')
+    Desired_Affect2: str = Field(..., example='Body Relaxation')
+    Desired_affect3: str = Field(..., example='Creativity')
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
@@ -30,19 +30,13 @@ class Item(BaseModel):
 @router.post('/predict')
 async def predict(item: Item):
     """
-    Make random baseline predictions for classification problem 🔮
+    Drop down menus for the Following:
 
-    ### Request Body
-    - `x1`: positive float
-    - `x2`: integer
-    - `x3`: string
-
-    ### Response
-    - `prediction`: boolean, at random
-    - `predict_proba`: float between 0.5 and 1.0, 
-    representing the predicted class's probability
-
-    Replace the placeholder docstring and fake predictions with your own model.
+    1- Desired Affects: Decreasing Depression
+    2- Body affects:
+    3- Mood alteration:
+    4- Appetite stimulation
+    5-
     """
 
     X_new = item.to_df()
