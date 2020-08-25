@@ -8,14 +8,11 @@ load_dotenv()
 
 df = pd.read_csv('cannabis_new.csv')
 
-# cleaning
+# cleaning?
 
 dbname = getenv('POSTGRES_DB_NAME')
-
 user = getenv('POST_GRES_DB_USER')
-
 password = getenv('POSTGRES_PASS_KEY')
-
 host = getenv('DATABASE_URL')
 
 
@@ -23,8 +20,6 @@ host = getenv('DATABASE_URL')
 pg_conn = psycopg2.connect(dbname=dbname, user=user,
                            password=password, host=host)
 
-# pg_conn = psycopg2.connect(dbname=dbname, user=dbname,
-#                            password=password, host=host)
 
 # cursor
 pg_curs = pg_conn.cursor()
