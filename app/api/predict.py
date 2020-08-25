@@ -2,6 +2,7 @@ import logging
 import random
 
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 import pandas as pd
 from pydantic import BaseModel, Field, validator
 
@@ -45,12 +46,26 @@ async def predict(item: Item):
     Replace the placeholder docstring and fake predictions with your own model.
     """
 
-    # X_new = item.to_df()
-    # log.info(X_new)
-    # y_pred = random.choice([True, False])
-    # y_pred_proba = random.random() / 2 + 0.5
+    X_new = item.to_df()
+    log.info(X_new)
+    y_pred = random.choice([True, False])
+    y_pred_proba = random.random() / 2 + 0.5
     return {
         'prediction': y_pred,
         'probability': y_pred_proba
         # 'Hello, World!''
     }
+
+@router.get('/predict')
+async def test_prediction():
+    demo_response = {
+        'strain': {
+            'name': 'Grandaddy Purple',
+            'type': 'Indica',
+            'description': 'Makes you sleep',
+            'Terpenes': ['Herbal', 'Peppery', 'Pine'],
+            'Effect': 'Calming'
+        }
+    }
+
+    return JSONResponse(content=demo_response)
