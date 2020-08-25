@@ -2,22 +2,30 @@ import psycopg2
 import pandas as pd
 from psycopg2.extras import execute_values
 from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 df = pd.read_csv('cannabis_new.csv')
 
 # cleaning
 
-dbname = 'zgexitff'
-user = 'zgexitff'
-password = 'N-rZTbhw5RUyDylzQH6Cmai2wSD4SGtr'
-host = 'isilo.db.elephantsql.com'
+dbname = getenv('POSTGRES_DB_NAME')
+
+user = getenv('POST_GRES_DB_USER')
+
+password = getenv('POSTGRES_PASS_KEY')
+
+host = getenv('DATABASE_URL')
+
 
 # connect to DB
-pg_conn = psycopg2.connect(dbname=getenv('POSTGRES_DB_KEY'), user=getenv('POSTGRES_DB_KEY'),
-                           password=getenv('POSTGRES_PASS_KEY'), host=getenv('DATABASE_URL'))
+pg_conn = psycopg2.connect(dbname=dbname, user=user,
+                           password=password, host=host)
 
 # pg_conn = psycopg2.connect(dbname=dbname, user=dbname,
 #                            password=password, host=host)
+
 # cursor
 pg_curs = pg_conn.cursor()
 
