@@ -54,9 +54,9 @@ when deploying to Heroku
 #         # 'Hello, World!''
 #     }
 
-@router.get('/predict/<str:input>')
-async def test_prediction(input):
-    conn = sqlite3.connect('cannabis.sqlite3')
+@router.get('/predict')
+async def test_prediction():
+    conn = sqlite3.connect('../../cannabis.sqlite3')
     curs = conn.cursor()
     pred = 25  # Stable prediction before the model goes into place
     # pred = model.predict(input)
