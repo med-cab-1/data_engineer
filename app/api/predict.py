@@ -1,6 +1,6 @@
 import logging
 import random
-
+import sqlite3
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import pandas as pd
@@ -12,7 +12,8 @@ router = APIRouter()
 """
 Code below is in progress, currently coommented out to prevent errors
 when deploying to Heroku
-""" 
+"""
+
 
 # class Item(BaseModel):
 #     """Use this data model to parse the request body JSON."""
@@ -55,8 +56,11 @@ when deploying to Heroku
 
 @router.get('/predict/<str:input>')
 async def test_prediction(input):
+    conn = sqlite3.connect('cannabis.sqlite3')
+    curs = conn.cursor()
+    pred = 25  # Stable prediction before the model goes into place
     # pred = model.predict(input)
-    # strain = db.lookup(pred)
+    strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred}")
     demo_response = {
         'strain': {
             'name': 'Grandaddy Purple',
@@ -66,5 +70,5 @@ async def test_prediction(input):
             'Effect': 'Calming'
         }
     }
-    return JSONResponse(content=demo_response)
+    return JSONResponse(content=strain)
     # return JSONResponse(content=strain)
