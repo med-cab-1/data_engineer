@@ -9,13 +9,35 @@ from pydantic import BaseModel, Field, validator
 log = logging.getLogger(__name__)
 router = APIRouter()
 
+"""
+Code below is in progress, currently coommented out to prevent errors
+when deploying to Heroku
+"""
+# class DesiredAffects(BaseModel):
+#     """Use this data model to parse the request body JSON."""
+#
+#     Desired_Affect1: str = Field(..., example='Mood Alteration')
+#     Desired_Affect2: str = Field(..., example='Body Relaxation')
+#     Desired_affect3: str = Field(..., example='Creativity')
+#
+#     def to_df(self):
+#         """Convert pydantic object to pandas dataframe with 1 row."""
+#         return pd.DataFrame([dict(self)])
+#
+#     @validator('x1')
+#     def x1_must_be_positive(cls, value):
+#         """Validate that x1 is a positive number."""
+#         assert value > 0, f'x1 == {value}, must be > 0'
+#         return value
 
-class DesiredAffects(BaseModel):
+
+
+class Item(BaseModel):
     """Use this data model to parse the request body JSON."""
 
-    Desired_Affect1: str = Field(..., example='Mood Alteration')
-    Desired_Affect2: str = Field(..., example='Body Relaxation')
-    Desired_affect3: str = Field(..., example='Creativity')
+    x1: float = Field(..., example=3.14)
+    x2: int = Field(..., example=-42)
+    x3: str = Field(..., example='banjo')
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
@@ -29,29 +51,15 @@ class DesiredAffects(BaseModel):
 
 
 @router.post('/predict')
-async def predict(item: DesiredAffects):
+async def predict(item: Item):
     """
     Drop down menus for the Following:
 
-<<<<<<< HEAD
-    ### Request Body
-    - `x1`: positive float
-    - `x2`: integer
-    - `x3`: string
-
-    ### Response
-    - `prediction`: boolean, at random
-    - `predict_proba`: float between 0.5 and 1.0,
-    representing the predicted class's probability
-
-    Replace the placeholder docstring and fake predictions with your own model.
-=======
     1- Bodily Affects: Tingly, Energetic, Relaxed
     2- Mind affects: Happy, Euphoric,
     3- Mood alteration: Uplifted, Giggly, Focused
     4- Taste: Earthy, Woody, Pine, Grape, Sweet, Pungent
     5- THC:CBD Ratio: 1:1, 1:10, 1:20, 3:1, 5:1, 10:1
->>>>>>> 8c74bbf107eceae9f27b226ef55325b7ea0c2408
     """
 
     x_df = item.to_df()
