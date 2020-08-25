@@ -18,6 +18,7 @@ pandas = "*"
 uvicorn = "*"
 plotly = "*"
 psycopg2-binary = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
