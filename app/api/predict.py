@@ -13,6 +13,8 @@ router = APIRouter()
 Code below is in progress, currently coommented out to prevent errors
 when deploying to Heroku
 """
+
+
 # class DesiredAffects(BaseModel):
 #     """Use this data model to parse the request body JSON."""
 #
@@ -29,7 +31,6 @@ when deploying to Heroku
 #         """Validate that x1 is a positive number."""
 #         assert value > 0, f'x1 == {value}, must be > 0'
 #         return value
-
 
 
 class Item(BaseModel):
@@ -55,11 +56,7 @@ async def predict(item: Item):
     """
     Drop down menus for the Following:
 
-    1- Bodily Affects: Tingly, Energetic, Relaxed
-    2- Mind affects: Happy, Euphoric,
-    3- Mood alteration: Uplifted, Giggly, Focused
-    4- Taste: Earthy, Woody, Pine, Grape, Sweet, Pungent
-    5- THC:CBD Ratio: 1:1, 1:10, 1:20, 3:1, 5:1, 10:1
+    Rated Each feature importance:
     """
 
     x_df = item.to_df()
@@ -70,6 +67,7 @@ async def predict(item: Item):
         'probability': y_pred_proba
         # 'Hello, World!''
     }
+
 
 @router.get('/predict')
 async def test_prediction():
