@@ -10,12 +10,12 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 
-class Item(BaseModel):
+class DesiredAffects(BaseModel):
     """Use this data model to parse the request body JSON."""
 
-    x1: float = Field(..., example=3.14)
-    x2: int = Field(..., example=-42)
-    x3: str = Field(..., example='banjo')
+    Desired_Affect1: str = Field(..., example='Mood Alteration')
+    Desired_Affect2: str = Field(..., example='Body Relaxation')
+    Desired_affect3: str = Field(..., example='Creativity')
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
@@ -29,10 +29,11 @@ class Item(BaseModel):
 
 
 @router.post('/predict')
-async def predict(item: Item):
+async def predict(item: DesiredAffects):
     """
-    Make random baseline predictions for classification problem 🔮
+    Drop down menus for the Following:
 
+<<<<<<< HEAD
     ### Request Body
     - `x1`: positive float
     - `x2`: integer
@@ -44,12 +45,18 @@ async def predict(item: Item):
     representing the predicted class's probability
 
     Replace the placeholder docstring and fake predictions with your own model.
+=======
+    1- Bodily Affects: Tingly, Energetic, Relaxed
+    2- Mind affects: Happy, Euphoric,
+    3- Mood alteration: Uplifted, Giggly, Focused
+    4- Taste: Earthy, Woody, Pine, Grape, Sweet, Pungent
+    5- THC:CBD Ratio: 1:1, 1:10, 1:20, 3:1, 5:1, 10:1
+>>>>>>> 8c74bbf107eceae9f27b226ef55325b7ea0c2408
     """
 
-    X_new = item.to_df()
-    log.info(X_new)
-    y_pred = random.choice([True, False])
-    y_pred_proba = random.random() / 2 + 0.5
+    x_df = item.to_df()
+    y_pred = 'OG Kush'  # ML model would output the most desirable strain here
+    y_pred_proba = 'OG Kush matches your desired affect to 98% accuracy'  # here we would describe how closely it fits
     return {
         'prediction': y_pred,
         'probability': y_pred_proba
