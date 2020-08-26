@@ -56,11 +56,12 @@ when deploying to Heroku
 
 @router.get('/predict')
 async def test_prediction():
-    conn = sqlite3.connect('../../cannabis.sqlite3')
+    conn = sqlite3.connect('cannabis.sqlite3')
     curs = conn.cursor()
     pred = 25  # Stable prediction before the model goes into place
     # pred = model.predict(input)
-    strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred}")
+    query_strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred}")
+    strain = curs.fetchall()
     demo_response = {
         'strain': {
             'name': 'Grandaddy Purple',
@@ -70,5 +71,6 @@ async def test_prediction():
             'Effect': 'Calming'
         }
     }
+
     return JSONResponse(content=strain)
     # return JSONResponse(content=strain)
