@@ -19,6 +19,7 @@ uvicorn = "*"
 plotly = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+pysqlite3 = "*"
 
 [requires]
 python_version = "3.7"
