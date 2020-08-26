@@ -1,10 +1,12 @@
 import logging
 import random
+import pandas
 import sqlite3
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import pandas as pd
 from pydantic import BaseModel, Field, validator
+from .init_db import create_db, say_hi
 
 log = logging.getLogger(__name__)
 router = APIRouter()
@@ -22,7 +24,8 @@ class Input(BaseModel):
 
 @router.post('/predict')
 async def test_prediction(user_input: Input):
-    conn = sqlite3.connect('cannabis.sqlite3')
+    # conn = sqlite3.connect('../../Data/cannabis.sqlite3')
+    conn = sqlite3.connect('Data/cannabis.sqlite3')
     curs = conn.cursor()
     pred = 687  # Stable prediction before the model goes into place
     # pred = model.predict(user_input.input_phrase)
@@ -34,3 +37,16 @@ async def test_prediction(user_input: Input):
         suggestion[key] = suggestion[key].split(',')
 
     return JSONResponse(content=suggestion)
+
+
+@router.get('/init_db')
+async def init_db():
+    create_db()
+
+@router.get('/hi')
+async def hello():
+    say_hi()
+
+
+if __name__ == '__main__':
+    create_db()
