@@ -28,7 +28,7 @@ it has to Flask API made it easy for us to understand along with this resource
 - [Spacy](https://spacy.io/api/doc): For Natural Language Processing
 - [Pandas](): Exploratory Data analysis and data conversion to SQLite3
 - [Scikit Learn](): Model Creation and Machine Learning
-- [Python])(): 3.7 was used for this project
+- [Python](): 3.7 was used for this project
 
 
 ## Getting started
