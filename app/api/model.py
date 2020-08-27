@@ -13,6 +13,10 @@ from sklearn.neighbors import NearestNeighbors
 import pickle
 import en_core_web_sm
 
+from spacy import load
+import en_core_web_sm
+# nlp= en_core_web_sm.load()
+
 
 
 # Define a function to tokenize the text:
@@ -26,7 +30,11 @@ def train(user_input):
     df = pd.read_csv('Data/cannabis_new.csv')
     print('Before making nlp')
     print(user_input)
+<<<<<<< HEAD
+    nlp= en_core_web_sm.load()
+=======
     nlp = spacy.load('en_core_web_sm')
+>>>>>>> e84b28f344a406b41309cfa05f9ebdd776c1430f
     print('After making nlp')
 
     def tokenizer(text):
