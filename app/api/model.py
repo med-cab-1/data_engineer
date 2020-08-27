@@ -6,36 +6,22 @@ Med-Cab-2020
 """
 
 
+# IMPORTS
 import pandas as pd
 import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 import pickle
 import en_core_web_sm
-
 from spacy import load
 import en_core_web_sm
-# nlp= en_core_web_sm.load()
-
-
-
-# Define a function to tokenize the text:
-# def tokenizer(text, nlp):
-#     doc=nlp(text)
-#     return [token.lemma_ for token in doc if ((token.is_stop == False) and
-#     (token.is_punct == False)) and (token.pos_ != 'PRON')]
 
 
 def train(user_input):
     df = pd.read_csv('Data/cannabis_new.csv')
-    print('Before making nlp')
-    print(user_input)
-<<<<<<< HEAD
+
     nlp= en_core_web_sm.load()
-=======
-    nlp = spacy.load('en_core_web_sm')
->>>>>>> e84b28f344a406b41309cfa05f9ebdd776c1430f
-    print('After making nlp')
+
 
     def tokenizer(text):
         doc=nlp(text)
