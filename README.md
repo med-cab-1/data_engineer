@@ -1,5 +1,8 @@
 # Med Cabinet
 
+## Heroku App Link:
+https://med-cab-2020.herokuapp.com
+
 - [Big picture](#big-picture)
 - [Tech stack](#tech-stack)
 - [Getting started](#getting-started)
