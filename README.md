@@ -1,14 +1,14 @@
 # Med Cabinet
 
-## Heroku App Link:
-https://med-cab-2020.herokuapp.com
-
 - [Big picture](#big-picture)
 - [Tech stack](#tech-stack)
 - [Getting started](#getting-started)
 - [File structure](#file-structure)
 - [More instructions](#more-instructions)
 - [Deploying to Heroku](#deploying-to-heroku)
+
+## Heroku App Link:
+https://med-cab-2020.herokuapp.com
 
 ## Big picture
 Our goal in this project was to create a medical Cannabis recommendation API. This would receive form input and
