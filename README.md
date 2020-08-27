@@ -8,7 +8,7 @@
 - [Deploying to Heroku](#deploying-to-heroku)
 
 ## Heroku App Link:
-https://med-cab-2020.herokuapp.com
+[Current API with Dummy Data](https://med-cab-2020.herokuapp.com)
 
 ## Big picture
 Our goal in this project was to create a medical Cannabis recommendation API. This would receive form input and
