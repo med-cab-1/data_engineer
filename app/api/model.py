@@ -12,6 +12,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 import pickle
 
+from spacy import load
+import en_core_web_sm
+# nlp= en_core_web_sm.load()
+
 
 
 # Define a function to tokenize the text:
@@ -25,7 +29,7 @@ def train(user_input):
     df = pd.read_csv('Data/cannabis_new.csv')
     print('Before making nlp')
     print(user_input)
-    nlp = spacy.load('en_core_web_lg')
+    nlp= en_core_web_sm.load()
     print('After making nlp')
 
     def tokenizer(text):

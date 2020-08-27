@@ -13,8 +13,10 @@ log = logging.getLogger(__name__)
 router = APIRouter()
 
 """
-Code below is in progress, currently commented out to prevent errors
-when deploying to Heroku
+Predict file that contains code and routes for when the server recieves a
+predict request from the user.
+
+
 """
 
 
@@ -24,15 +26,26 @@ class Input(BaseModel):
 
 
 @router.post('/predict')
-async def test_prediction(user_input: Input):
-    # conn = sqlite3.connect('../../Data/cannabis.sqlite3')
+async def predict(user_input: Input):
+    """
+    Function for taking in the user input string containing from the http request
+    body and sending the string containing the key words to the model for
+    predicting a suggested strain.
+
+    
+    """
+
+    # Setup and configure our connection to our database
     conn = sqlite3.connect('Data/cannabis.sqlite3')
     curs = conn.cursor()
-    # pred = 687  # Stable prediction before the model goes into place
-    # pred = model.predict(user_input.input_phrase)
-    print(user_input.input_phrase)
-    pred = train(user_input.input_phrase)
 
+    # Uncomment code below to use our model to obtain live predictions
+    # pred = train(user_input.input_phrase)
+    pred = 420
+    """
+    Commented code below is for use if we want to return more than one
+    prediction.
+    """
     # strains = []
     # for p in pred:
     #     query_strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {p} ORDER BY Rating")
@@ -58,10 +71,6 @@ async def test_prediction(user_input: Input):
 @router.get('/init_db')
 async def init_db():
     create_db()
-
-@router.get('/test')
-async def hello():
-    train()
 
 
 if __name__ == '__main__':
