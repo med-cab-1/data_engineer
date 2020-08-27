@@ -11,6 +11,7 @@ import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 import pickle
+import en_core_web_sm
 
 from spacy import load
 import en_core_web_sm
@@ -29,7 +30,11 @@ def train(user_input):
     df = pd.read_csv('Data/cannabis_new.csv')
     print('Before making nlp')
     print(user_input)
+<<<<<<< HEAD
     nlp= en_core_web_sm.load()
+=======
+    nlp = spacy.load('en_core_web_sm')
+>>>>>>> e84b28f344a406b41309cfa05f9ebdd776c1430f
     print('After making nlp')
 
     def tokenizer(text):
@@ -69,12 +74,3 @@ def train(user_input):
 
 
     return output[0]
-
-    # result = df[(df['Id']==output[0]) |
-    #         (df['Id']==output[1]) |
-    #         (df['Id']==output[2]) |
-    #         (df['Id']==output[3]) |
-    #         (df['Id']==output[4]) ]
-    # result = result.sort_values(by=['Rating'], ascending=False)
-    #
-    # print(result.head())
