@@ -8,8 +8,8 @@
 - [Deploying to Heroku](#deploying-to-heroku)
 
 ## Heroku App Link:
-[Current API with Predcitions from string inputs](https://med-cab-2020.herokuapp.com)
-[Fully functioning Cannabis Recommendation Site](https://medcab-io.herokuapp.com/)
+- [Current API with Predcitions from string inputs](https://med-cab-2020.herokuapp.com)
+- [Fully functioning Cannabis Recommendation Site](https://medcab-io.herokuapp.com/)
 
 ## Big picture
 Our goal in this project was to create a medical Cannabis recommendation API. This would receive form input and
