@@ -14,6 +14,7 @@ from .init_db import create_db, say_hi
 from .model import train
 
 
+
 """
 Predict file that contains code and routes for when the server recieves a
 predict request from the user.
@@ -50,9 +51,10 @@ async def predict(user_input: Input):
     curs = conn.cursor()
 
     # Uncomment code below to use our model to obtain live predictions
-    # pred = train(user_input.input_phrase)
-    pred = 420
-    
+    pred = train(user_input.input_phrase)
+    print(pred)
+    #pred = 420
+
     # Create query string
     query_strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred} ORDER BY Rating")
     # Send query  to database
