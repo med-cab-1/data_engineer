@@ -52,8 +52,6 @@ async def predict(user_input: Input):
 
     # Uncomment code below to use our model to obtain live predictions
     pred = train(user_input.input_phrase)
-    print(pred)
-    #pred = 420
 
     # Create query string
     query_strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred} ORDER BY Rating")
@@ -67,6 +65,30 @@ async def predict(user_input: Input):
     # Return our response with JSONResponse
     return JSONResponse(content=suggestion)
 
+
+@router.post('/test')
+async def test(user_input: Input):
+    """
+    Test route per front end request to be able to receive dummy data.
+    The dummy data is a valid query from the db, just with a hardcoded
+    prediction.
+    """
+
+    conn = sqlite3.connect('Data/cannabis.sqlite3')
+    curs = conn.cursor()
+
+    pred = 420
+    # Create query string
+    query_strain = curs.execute(f"SELECT * FROM Cannabis WHERE Strain_ID == {pred} ORDER BY Rating")
+    # Send query  to database
+    strain = curs.fetchall()
+    # Response formatting
+    keys = ['ID', 'Strain_id', 'Name', 'Type', 'Rating', 'Effects', 'Description', 'Flavors', 'Neighbors']
+    suggestion = {k: v for k, v in zip(keys, strain[0])}
+    for key in ['Effects', 'Flavors', 'Neighbors']:
+        suggestion[key] = suggestion[key].split(',')
+    # Return our response with JSONResponse
+    return JSONResponse(content=suggestion)
 
 @router.get('/init_db')
 async def init_db():
